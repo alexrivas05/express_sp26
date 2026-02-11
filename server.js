@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express()
+app.set('view engine', 'ejs');
+
  app.get('/',(req, res)=>{
-    //res.render("index");
+    console.log('here');
+    res.render('index', {userName:'Alex'});
 });
 
 app.get('/test',(req,res)=>{
@@ -9,7 +12,22 @@ app.get('/test',(req,res)=>{
 });
 
 app.get('/status',(req,res)=>{
-    res.status(500).send('hi');
+    res.download('server.js');
 });
+
+
+
+app.get('/users', (req, res)=>{
+
+res.send('User List');
+
+});
+
+app.get('/users/new', (req, res)=>{
+
+res.send('User New Form');
+
+});
+
 
 app.listen(3030);
