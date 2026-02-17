@@ -13,8 +13,14 @@
         Please stay a while and look around 
     </p>
     <p>
-        Hello <%=userName%>
+        Hello <%= locals.userName ?? 'New User!' %>
     </p>
+    <% 
+    for(let i=0;i<8;i++){ %>
+    <p>
+        <img width="200" src="book.png" alt="Stack of magic books">
+    </p>
+    <%} %>
     
 </body>
 </html>

@@ -1,33 +1,17 @@
 const express = require('express');
-const app = express()
-app.set('view engine', 'ejs');
+const app = express();
+const userRouter = require('./routes/users');
 
- app.get('/',(req, res)=>{
+const wordRouter = require('./routes/words');
+
+app.set('view engine', 'ejs');
+app.use(express.static("public"));
+app.use('/users', userRouter);
+app.use('/words', wordRouter);
+
+ app.get('/', (req, res)=>{
     console.log('here');
     res.render('index', {userName:'Alex'});
 });
-
-app.get('/test',(req,res)=>{
-    res.send('<h2>Test</h2>');
-});
-
-app.get('/status',(req,res)=>{
-    res.download('server.js');
-});
-
-
-
-app.get('/users', (req, res)=>{
-
-res.send('User List');
-
-});
-
-app.get('/users/new', (req, res)=>{
-
-res.send('User New Form');
-
-});
-
 
 app.listen(3030);
